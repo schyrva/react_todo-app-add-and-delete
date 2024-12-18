@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import cn from 'classnames';
-import { Todo } from '../types/Todo';
+import { Todo } from '../../types/Todo';
 
 type Props = {
   todo: Todo;

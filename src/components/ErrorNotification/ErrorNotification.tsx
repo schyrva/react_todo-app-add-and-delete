@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import cn from 'classnames';
-import { ErrorType } from '../types/ErrorType';
+import { ErrorType } from '../../types/ErrorType';
 
 type Props = {
   error: ErrorType;
@@ -20,7 +20,7 @@ export const ErrorNotification: React.FC<Props> = ({ error, setError }) => {
     return () => {
       clearTimeout(timerId);
     };
-  }, [error]);
+  }, [error, setError]);
 
   return (
     <div

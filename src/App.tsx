@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { TodoHeader } from './components/TodoHeader';
 import { TodoFooter } from './components/TodoFooter';
 import { ErrorNotification } from './components/ErrorNotification';
@@ -18,6 +16,8 @@ export const App: React.FC = () => {
   );
   const [tempTodo, setTempTodo] = useState<Todo | null>(null);
   const [loadingTodoIds, setLoadingTodoIds] = useState<number[]>([]);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredTodos = useMemo(
     () =>
@@ -75,7 +75,7 @@ export const App: React.FC = () => {
       await deleteTodo(todoId);
       setTodos(prev => prev.filter(todo => todo.id !== todoId));
 
-      document.querySelector<HTMLInputElement>('.todoapp__new-todo')?.focus();
+      inputRef.current?.focus();
     } catch (err) {
       setErrorMessage(ErrorType.DeleteTodo);
     } finally {
@@ -100,6 +100,7 @@ export const App: React.FC = () => {
           onAddTodo={onAddTodo}
           setErrorMessage={setErrorMessage}
           isInputDisabled={!!tempTodo}
+          inputRef={inputRef}
         />
 
         {todos.length > 0 && (
