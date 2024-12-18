@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { FilterStatus } from '../types/FilterStatus';
+
 import cn from 'classnames';
+import { FilterStatus } from '../../types/FilterStatus';
 
 type Props = {
   filterStatus: FilterStatus;
